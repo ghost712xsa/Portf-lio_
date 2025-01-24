@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+        /* Estilo Global */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #f0f0f0;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        nav a:hover {
+            color: #ff6347;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .btn-start {
+            padding: 12px 30px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-start:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(0, 123, 255, 0.5);
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .portfolio-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .carousel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .carousel img {
+            width: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .carousel img:hover {
+            box-shadow: 0 20px 30px -10px rgba(255, 255, 255, 0.8);
+            transform: scale(1.05);
+        }
+
+        /* Card */
+        .card {
+            display: none;
+            opacity: 0;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 90%;
+            max-width: 450px;
+            padding: 30px;
+            background-color: #2e2e2e;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            z-index: 1000;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        .card .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 28px;
+            color: #fff;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            transition: color 0.3s ease;
+        }
+
+        .card .close-btn:hover {
+            color: #ff6347;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 60px 20px;
+            background-color: #222;
+            color: #fff;
+        }
+
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .about-content {
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .about-content h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Estilo do Rodapé */
+.footer {
+    background-color: #222;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.footer-nav {
+    margin: 10px 0;
+}
+
+.footer-nav a {
+    margin: 0 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+    color: #0056b3;
+}
+
+        .whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    z-index: 1000;
+}
+
+.whatsapp-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.whatsapp-button img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .btn-start {
+                font-size: 0.9em;
+                padding: 10px 20px;
+            }
+
+            .portfolio-section h2 {
+                font-size: 1.5em;
+            }
+
+            .card h2 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+        <a href="https://wa.me/5511914935104" target="_blank" class="whatsapp-button">
+    <img src="whatsapp.webp" alt="WhatsApp">
+</a>
+
+<!-- Tela de Boas-vindas com Vídeo de Fundo -->
+<section class="hero">
+    <video autoplay loop muted playsinline class="video-background">
+        <source src="fundo2.mp4" type="video/mp4">
+        Seu navegador não suporta o formato de vídeo.
+    </video>
+
+    <div>
+        <h1>Bem-vindo ao Meu Portfólio</h1>
+        <p>Design criativo e soluções visuais para transformar sua ideia em realidade.</p>
+        <a href="#portfolio" class="btn-start">Explore Meu Trabalho</a>
+    </div>
+</section>
+<section id="about" class="about-section">
+    <div class="about-container">
+       <!-- <div class="about-image">
+            <img src="sua-imagem.jpg" alt="David Brayan">
+        </div>
+    -->
+        <div class="about-content">
+            <h2>Sobre mim</h2>
+            <p>
+    Oi! Eu sou o <span class="highlight">David Brayan</span>, um <span class="highlight">designer júnior</span> apaixonado por criar coisas que realmente impactam as pessoas. 
+    Estou sempre me jogando em novos aprendizados, tentando melhorar e crescer nessa área que me inspira tanto.
+</p>
+<p>
+    Atualmente, trabalho como freelancer, ajudando marcas a se conectarem com seus públicos de um jeito criativo e autêntico. 
+    Minhas principais áreas são <span class="highlight">social media</span> e <span class="highlight">design web</span>, onde me sinto mais à vontade para explorar ideias e trazer soluções únicas.
+</p>
+<p>
+    Além do design, também tenho experiência em <span class="highlight">desenvolvimento de sistemas</span>, <span class="highlight">administração</span> e <span class="highlight">hardware</span>. 
+    Esses conhecimentos acabam somando no meu trabalho e me ajudam a pensar em soluções mais completas e práticas.
+</p>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Seção de Portfólio -->
+<section id="portfolio" class="portfolio-section">
+    <h2>Designs Web</h2>
+
+    <div class="carousel">
+         <div>
+            <img src="1.png" alt="Projeto 1" onclick="showCard(this)">
+            <div class="card">
+                <span class="close-btn" onclick="closeCard(this)">×</span>
+                <img src="imagem.png" alt="Projeto 1">
+                <h2>PobreFlix</h2>
+                <p>Este é um site que desenvolvi como parte de um projeto de design web. Utilizei elementos visuais e estruturais inspirados na interface da Netflix, visando criar uma experiência familiar e intuitiva para os usuários. O design busca mesclar funcionalidade com estética, com foco em navegação simplificada e layout responsivo, para garantir uma boa experiência tanto em dispositivos móveis quanto desktop. A inspiração na Netflix serviu como base para trabalhar com uma organização clara dos conteúdos, mantendo a modernidade e a fluidez características desse tipo de plataforma.</p>
+                <a href="https://ghost712xsa.github.io/PobreFlix_/" class="btn-start" target="_blank">Acesse o Site</a>
+
+            </div>
+        </div>
+
+        <!-- Imagem 2 com Card -->
+        <div>
+            <img src="2.png" alt="Projeto 2" onclick="showCard(this)">
+            <div class="card">
+                <span class="close-btn" onclick="closeCard(this)">×</span>
+                <img src="imagem2.png" alt="Projeto 2">
+                <h2>BrynStore</h2>
+                <p>BrynStore é um site que desenvolvi com o objetivo de criar uma vitrine online para roupas, focando em uma apresentação clara e elegante dos produtos. O design foi pensado de maneira minimalista, com o intuito de proporcionar uma experiência de navegação clean e sem distrações, algo que tem se tornado cada vez mais popular entre os consumidores atualmente. A escolha do estilo minimalista visa valorizar os produtos de forma que o foco esteja totalmente nas peças, ao mesmo tempo em que a estética moderna e sofisticada cria uma atmosfera agradável para os visitantes.</p>
+                <a href="#" class="btn-start">Em breve</a>
+            </div>
+        </div>
+
+        <!-- Imagem 3 com Card -->
+        <div>
+            <img src="3.png" alt="Projeto 3" onclick="showCard(this)">
+            <div class="card">
+                <span class="close-btn" onclick="closeCard(this)">×</span>
+                <img src="imagem3.png" alt="Projeto 3">
+                <h2>Sunflower Tech</h2>
+                <p>Sunflower Tech é um jogo que desenvolvi junto aos meus colegas durante o nosso TCC na Etec Franco da Rocha, o qual nos garantiu a nota máxima. O jogo foi criado com a missão de ser uma ferramenta educativa para crianças autistas, ajudando-as a aprender sobre formas geométricas de uma maneira lúdica e envolvente. A proposta é usar elementos visuais e interativos que promovam o aprendizado de forma acessível, estimulando a percepção e a compreensão das formas de uma maneira divertida e sem pressão. Fico muito orgulhoso desse projeto, pois ele combina a inovação do design com um impacto social positivo.</p>
+                <a href="https://ghost712xsa.github.io/Sunflower/index.html" class="btn-start" target="_blank">Acesse o Site</a>
+            </div>
+        </div>
+
+        <!-- Imagem 4 com Card -->
+        <div>
+            <img src="4.png" alt="Projeto 4" onclick="showCard(this)">
+            <div class="card">
+                <span class="close-btn" onclick="closeCard(this)">×</span>
+                <img src="imagem4.png" alt="Projeto 4">
+                <h2>Notes</h2>
+                <p>Notes é outro projeto que desenvolvi, com a proposta de oferecer uma ferramenta simples e prática para anotação online. O site tem como conceito um bloco de notas digital, inspirado no formato clássico de post-it, proporcionando uma experiência visual intuitiva e leve. A ideia é que os usuários possam adicionar suas anotações de forma rápida e organizada, com uma interface que remete à funcionalidade e praticidade dos post-its físicos. </p>
+                <a href="https://ghost712xsa.github.io/notes/" class="btn-start" target="_blank">Acesse o Site</a>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Seção de Vídeo em Formato de Celular -->
+<center> <h1>Design in Social Media</h1> 
+
+
+<iframe src="https://www.behance.net/embed/project/217620865?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>
+
+<iframe src="https://www.behance.net/embed/project/217625503?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>
+</center>
+
+
+<script>
+    function showCard(image) {
+        const card = image.nextElementSibling;
+        card.style.display = 'block';
+        card.style.opacity = '1';
+        card.style.transform = 'translate(-50%, -50%) scale(1)';
+    }
+
+    function closeCard(closeButton) {
+        const card = closeButton.closest('.card');
+        card.style.display = 'none';
+    }
+</script>
+
+
+</body>
+</html>
